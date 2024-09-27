@@ -4,6 +4,8 @@ from rest_framework import routers
 from . import views
 
 
+app_name = 'wallet'
+
 router = routers.DefaultRouter()
 
 router.register(r'wallets', views.WalletViewSet, basename='wallet')
