@@ -3,6 +3,7 @@ from django.core.exceptions import ObjectDoesNotExist
 from rest_framework import generics, mixins, viewsets, status
 from rest_framework.decorators import action
 from rest_framework.response import Response
+from rest_framework.serializers import ValidationError
 
 from .models import Wallet, Operation
 from .serializers import WalletSerializer, OperationSerializer
@@ -49,6 +50,12 @@ class OperationViewSet(viewsets.GenericViewSet,
                 {"error": "Wallet not found"},
                 status=status.HTTP_404_NOT_FOUND
                 )
+
+        if 'operation_type' not in request.data:
+            raise ValidationError(['Operation type field is required.'])
+
+        if 'amount' not in request.data:
+            raise ValidationError(['Amount field is required.'])
         
         operation_type = request.data['operation_type']
         amount = Decimal(request.data['amount'])

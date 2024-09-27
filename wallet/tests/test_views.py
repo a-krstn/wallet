@@ -119,13 +119,25 @@ class OperationViewSetTest(APITestCase):
         self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
 
 
-    def test_create_operation_with_incorrect_input_data(self):
+    def test_create_operation_without_amount(self):
         """
-        Test for creating operation with not incorrect input data
+        Test for creating operation without amount
         """
 
         data = {
             'operation_type': 'WITHDRAW',
+        }
+
+        response = self.client.post(reverse('wallet:operation-list', args=(self.wallet.id,)), data)
+        self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
+
+    def test_create_operation_without_operation_type(self):
+        """
+        Test for creating operation without amount
+        """
+
+        data = {
+            'amount': 100,
         }
 
         response = self.client.post(reverse('wallet:operation-list', args=(self.wallet.id,)), data)
