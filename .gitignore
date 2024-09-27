@@ -13,7 +13,6 @@ Thumbs.db
 */celerybeat-schedule.*
 celerybeat.pid
 
-/data
-mysite_data.json
+/postgres_data
 
 .coverage
