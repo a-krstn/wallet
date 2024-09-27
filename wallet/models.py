@@ -18,7 +18,7 @@ class Wallet(models.Model):
         decimal_places=2,
         )
     
-    def __str__(self) -> str:
+    def __str__(self):
         return f'{self.id}: {self.balance}'
     
 
@@ -46,5 +46,5 @@ class Operation(models.Model):
         decimal_places=2
         )
     
-    def __str__(self) -> str:
+    def __str__(self):
         return f'{self.operation_type}: {self.amount}'
